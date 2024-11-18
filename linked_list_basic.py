@@ -52,16 +52,37 @@ class LinkedList:
                     raise ValueError("Index out of bounds")
                 last = last.next
             return last.value
-
     
+    def __contains__(self,value):
+        last = self.head 
+        while last is not None:
+            if last.value == value:
+                return True
+            last = last.next
+        return False
         
-        
+    def insert(self,index,value):
+        if index == 0:
+            self.prepend(value)
+        else:
+            if self.head is None:
+                raise ValueError("Index out of bounds")
+            else:
+                last = self.head
+                for i in range(index-1):
+                    if last.next is None:
+                        raise ValueError("Indexßßßß out of bounds") 
+                    last = last.next
+                new_node = Node(value)
+                new_node.next = last.next 
+                last.next  = new_node   
     
 if __name__ == "__main__":
     ll = LinkedList()
     ll.append(1)
     ll.append(2)
     ll.prepend(3)
-    print(ll.get(3))
+    # print(ll.get(3))
+    print(ll.__contains__(13))
     print(ll.__len__())
     print(ll,'ll')
